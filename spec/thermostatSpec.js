@@ -45,4 +45,13 @@ describe('Thermostat', function() {
     expect(thermostat.isPowerSavingOn()).toBe(true);
   })
 
+  describe('when power saving is on', function() {
+    it('has a maximum temp of 25', function() {
+      for (var i = 0; i < 6; i++) {
+        thermostat.up();
+      }
+      expect(thermostat.getCurrentTemperature()).toEqual(25);
+    });
+  });
+
 });
