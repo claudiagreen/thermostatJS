@@ -1,4 +1,4 @@
-'use strict';
+3'use strict';
 
 describe('Thermostat', function() {
 
@@ -36,22 +36,36 @@ describe('Thermostat', function() {
   it('can switch power saving off', function() {
     thermostat.switchPowerSavingOff();
     expect(thermostat.isPowerSavingOn()).toBe(false);
-  })
+  });
 
   it('can switch power saving on', function() {
     thermostat.switchPowerSavingOff();
     expect(thermostat.isPowerSavingOn()).toBe(false);
     thermostat.switchPowerSavingOn();
     expect(thermostat.isPowerSavingOn()).toBe(true);
-  })
+  });
 
   describe('when power saving is on', function() {
+
     it('has a maximum temp of 25', function() {
       for (var i = 0; i < 6; i++) {
         thermostat.up();
       }
       expect(thermostat.getCurrentTemperature()).toEqual(25);
     });
+
+  });
+
+    describe('when power saving is off', function() {
+
+    it('has a maximum temp of 32', function() {
+      thermostat.switchPowerSavingOff();
+      for (var i = 0; i < 13; i++) {
+        thermostat.up();
+      }
+      expect(thermostat.getCurrentTemperature()).toEqual(32);
+    });
+
   });
 
 });
